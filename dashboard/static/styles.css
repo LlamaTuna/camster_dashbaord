@@ -149,3 +149,48 @@ textarea {
     background-color: #333 !important; /* Darker hover background */
     color: #ffffff !important; /* Brighter text color on hover */
 }
+
+/* Custom dark theme for DataTables using your own classes */
+.my-dark-table {
+    background-color: #333;
+    color: #ddd;
+    border-color: #555;
+}
+
+.my-dark-table th,
+.my-dark-table td {
+    background-color: #444;
+    color: #fff;
+}
+
+.my-dark-table thead th {
+    background-color: #555;
+    color: #fff;
+}
+
+.my-dark-table tbody td {
+    background-color: #333;
+    color: #ddd;
+}
+
+.my-dark-table .dataTables_filter input,
+.my-dark-table .dataTables_length select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.my-dark-table .dataTables_paginate .paginate_button {
+    background-color: #444;
+    color: #fff !important;
+    border: 1px solid #555;
+}
+
+.my-dark-table .dataTables_paginate .paginate_button:hover {
+    background-color: #555;
+    color: #fff !important;
+}
+
+.my-dark-table .dataTables_info {
+    color: #ddd;
+}
