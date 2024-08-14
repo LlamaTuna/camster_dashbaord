@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    
+    <div class="row">
+        <!-- Logs Section -->
+        <div class="col-md-6">
+            <h3>Logs</h3>
+            <ul class="list-group">
+                {% for log in logs %}
+                    <li class="list-group-item">
+                        <strong>{{ log.timestamp }}</strong>: {{ log.description }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Video Clips Section -->
+        <div class="col-md-6">
+            <h3>Video Clips</h3>
+            <ul class="list-group">
+                {% for clip in clips %}
+                    <li class="list-group-item">
+                        <strong>{{ clip.created_at }}</strong>: 
+                        <video width="320" height="240" controls>
+                            <source src="{{ clip.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
