@@ -1,3 +1,4 @@
+<!-- templates/dashboard/index.html -->
 {% extends 'base.html' %}
 
 {% block title %}Dashboard{% endblock %}
@@ -5,33 +6,31 @@
 {% block content %}
     <h1>Dashboard</h1>
     
-    <div class="row">
-        <!-- Logs Section -->
-        <div class="col-md-6">
-            <h3>Logs</h3>
-            <ul class="list-group">
-                {% for log in logs %}
-                    <li class="list-group-item">
-                        <strong>{{ log.timestamp }}</strong>: {{ log.description }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <!-- Video Clips Section -->
-        <div class="col-md-6">
-            <h3>Video Clips</h3>
-            <ul class="list-group">
-                {% for clip in clips %}
-                    <li class="list-group-item">
-                        <strong>{{ clip.created_at }}</strong>: 
-                        <video width="320" height="240" controls>
-                            <source src="{{ clip.file.url }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <h2>Events</h2>
+    <ul>
+        {% if events %}
+            {% for event in events %}
+                <li>{{ event.timestamp }} - {{ event.name }}: {{ event.description }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No events found.</li>
+        {% endif %}
+    </ul>
+    
+    <h2>Video Clips</h2>
+    <ul>
+        {% if video_clips %}
+            {% for clip in video_clips %}
+                <li>{{ clip.created_at }} - Clip for event: {{ clip.event.name }}
+                    <br>
+                    <video width="320" height="240" controls>
+                        <source src="{{ clip.file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>No video clips found.</li>
+        {% endif %}
+    </ul>
 {% endblock %}
