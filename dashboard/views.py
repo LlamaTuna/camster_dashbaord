@@ -29,6 +29,7 @@ def index(request):
     
     return render(request, 'dashboard/index.html', context)
 
+
 class CustomLoginView(LoginView):
     template_name = 'dashboard/login.html'
 
@@ -36,16 +37,25 @@ class CustomLoginView(LoginView):
 def log_event(request):
     serializer = LogSerializer(data=request.data)
     if serializer.is_valid():
-        Event.objects.create(
+        # Extract extra_data if present
+        extra_data = serializer.validated_data.get('extra_data', {})
+        face_name = extra_data.get('face_name')
+
+        # Save event with the named face if provided
+        event = Event.objects.create(
             name=serializer.validated_data['event_type'],
             description=serializer.validated_data['description'],
-            timestamp=serializer.validated_data['timestamp']
-            # Add extra_data if the model allows it
+            named_face=face_name  # Save the named face here
         )
-        return Response({"message": "Log received"}, status=201)
+
+        if face_name:
+            print(f"Detected face: {face_name}")
+        
+        return Response({"message": "Log received"}, status=status.HTTP_201_CREATED)
     else:
         print(f"Invalid log event data: {serializer.errors}")
-    return Response(serializer.errors, status=400)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 def upload_video(request):

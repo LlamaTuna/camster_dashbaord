@@ -6,6 +6,7 @@ class Event(models.Model):
     name = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
+    named_face = models.CharField(max_length=255, null=True, blank=True)  # Add this field
 
     def __str__(self):
         return self.name

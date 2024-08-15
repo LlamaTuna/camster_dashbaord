@@ -5,7 +5,7 @@ class LogSerializer(serializers.Serializer):
     timestamp = serializers.DateTimeField()
     event_type = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=255)
-    extra_data = serializers.JSONField(required=False, allow_null=True)
+    extra_data = serializers.JSONField(required=False)
 
 
 class EventSerializer(serializers.ModelSerializer):
