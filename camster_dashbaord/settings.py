@@ -147,3 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'index'  
 
 LOGOUT_REDIRECT_URL = 'index'  
+
+TIME_ZONE = 'America/Los_Angeles'
+USE_TZ = True
+

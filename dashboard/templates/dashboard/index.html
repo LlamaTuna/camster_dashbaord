@@ -5,62 +5,90 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    
-    <h2>Events</h2>
-    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
-        <table class="my-dark-table table table-striped" id="events-table">
-            <thead>
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Event Type</th>
-                    <th>Description</th>
-                    <th>Named Face</th> <!-- Added Named Face column -->
-                </tr>
-            </thead>
-            <tbody>
-                {% if events %}
-                    {% for event in events %}
-                        <tr>
-                            <td>{{ event.timestamp }}</td>
-                            <td>{{ event.name }}</td>
-                            <td>{{ event.description }}</td>
-                            <td>{{ event.named_face|default:"N/A" }}</td> <!-- Display Named Face -->
-                        </tr>
-                    {% endfor %}
-                {% else %}
+    <div class="dashboard-section">
+        <h2>Logged Events</h2>
+        <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+            <table class="my-dark-table table table-striped" id="events-table">
+                <thead>
                     <tr>
-                        <td colspan="4">No events found.</td>
+                        <th>Timestamp</th>
+                        <th>Event Type</th>
+                        <th>Description</th>
+                        <th>Named Face</th>
                     </tr>
-                {% endif %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% if events %}
+                        {% for event in events %}
+                            <tr>
+                                <td>{{ event.timestamp }}</td>
+                                <td>{{ event.name }}</td>
+                                <td>{{ event.description }}</td>
+                                <td>{{ event.named_face|default:"N/A" }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No events found.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
     </div>
     
-    <h2>Video Clips</h2>
-    <div class="row">
-        {% if video_clips %}
-            {% for clip in video_clips %}
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <a href="{{ clip.file.url }}" target="_blank">
-                        <img src="https://via.placeholder.com/320x240.png?text=Video+Clip" alt="Thumbnail" style="width:100%">
-                        <div class="caption">
-                            <p>{{ clip.created_at }} - Clip for event: {{ clip.event.name }}</p>
-                        </div>
-                    </a>
+    <div class="dashboard-section">
+        <h2>Video Clips</h2>
+        <div class="d-flex justify-content-between mb-3">
+            <form method="post" action="{% url 'delete_all_videos' %}" onsubmit="return confirm('Are you sure you want to delete all videos?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Delete All Videos
+                </button>
+            </form>
+            <a href="{% url 'download_all_videos' %}" class="btn btn-primary">
+                <i class="bi bi-download"></i> Download All Videos
+            </a>
+        </div>
+        <div class="row">
+            {% if video_clips %}
+                {% for clip in video_clips %}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <a href="{{ clip.file.url }}" target="_blank">
+                            {% if clip.thumbnail %}
+                                <img src="{{ clip.thumbnail.url }}" alt="Thumbnail" style="width:100%">
+                            {% else %}
+                                <img src="https://via.placeholder.com/320x240.png?text=No+Thumbnail" alt="Thumbnail" style="width:100%">
+                            {% endif %}
+                            <div class="caption">
+                                <p>{{ clip.created_at }} - Clip for event: {{ clip.event.name }}</p>
+                                <div class="button-group d-flex justify-content-between mt-2">
+                                    <form method="post" action="{% url 'delete_video' clip.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-purple">
+                                            <i class="bi bi-trash"></i> <!-- Bootstrap Trash Icon -->
+                                        </button>
+                                    </form>
+                                    <a href="{{ clip.file.url }}" download="{{ clip.file.name }}" class="btn btn-primary">
+                                        <i class="bi bi-download"></i> <!-- Bootstrap Download Icon -->
+                                    </a>
+                                </div>
+                           
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
-        {% else %}
-            <p>No video clips found.</p>
-        {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>No video clips found.</p>
+            {% endif %}
+        </div>
     </div>
+    
 {% endblock %}
 
 {% block extra_js %}
-      <!-- Include DataTables and custom JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
 {% endblock %}

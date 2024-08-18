@@ -1,7 +1,8 @@
+/* Style sheet styles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212 !important; /* Dark background color */
-    color: #e0e0e0 !important; /* Light text color */
+    color: #b4b4b4 !important; /* Light text color */
     margin: 0;
     padding: 0;
 }
@@ -14,37 +15,10 @@ body {
     background-color: #121212 !important; /* Dark background color */
 }
 
-.gallery-body {
-    padding: 20px;
-    background-color: #121212 !important; /* Dark background color */
-}
-
-.container {
-    background-color: #1e1e1e !important; /* Dark container background */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important; /* Darker shadow */
-    max-width: 100%;
-}
-
-#video {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    border: 1px solid #333 !important; /* Darker border */
-    border-radius: 10px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
 button {
     padding: 10px 20px;
     font-size: 16px;
-    color: #fff !important;
+    color: #000000 !important;
     background-color: #007bff !important; /* Bright blue button */
     border: none;
     border-radius: 5px;
@@ -67,48 +41,6 @@ textarea {
     resize: none;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    background-color: #121212 !important; /* Dark background color */
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #333 !important; /* Darker border */
-    border-radius: 8px;
-    transition: transform 0.2s;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    border-color: #777 !important; /* Lighter border on hover */
-}
-
-.tag-button {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.1) !important; /* Lighter semi-transparent background */
-    color: white !important;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.tag-button:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important; /* Lighter hover effect */
-}
 
 /* Navbar styles */
 .navbar {
@@ -193,4 +125,83 @@ textarea {
 
 .my-dark-table .dataTables_info {
     color: #ddd;
+}
+
+
+.dashboard-section {
+    background-color: #1e1e1e; /* Lighter background for sections */
+    padding: 20px;
+    margin-bottom: 20px; /* Adjust the gap between sections */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.table-container, .video-container {
+    padding: 15px;
+    background-color: #2a2a2a; /* Slightly lighter background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.thumbnail {
+    position: relative;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #2a2a2a; /* Ensure background matches the section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.thumbnail img {
+    border-radius: 5px;
+}
+
+.thumbnail:hover {
+    box-shadow: 0 0 15px rgba(150, 150, 150, 0.7);
+}
+
+.caption {
+    text-align: center;
+    margin-top: 5px; /* Add space above the caption */
+    padding-top: 15px; /* Add space between the thumbnail and the buttons */
+}
+
+/* Remove red outline from btn-danger and customize it */
+.btn-danger {
+    background-color: #7e1b25 !important; /* Red background */
+    border: none !important; /* Remove border */
+    color: #ffffff !important; /* White text color */
+}
+
+.btn-danger:hover {
+    background-color: #c82333 !important; /* Darker red on hover */
+}
+
+/* General button styles */
+.button-group .btn {
+    padding: 10px; /* Adjust padding as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important; /* Transparent background */
+    border: none !important; /* No border */
+    cursor: pointer;
+}
+
+.button-group .btn i {
+    font-size: 18px; /* Adjust icon size */
+    color: #ffffff; /* White icon color */
+}
+
+.button-group .btn i:hover {
+    color: #cccccc; /* Slightly lighter color on hover */
+}
+
+/* Ensure consistent appearance for all buttons, including delete and download */
+.btn-purple, .btn-primary {
+    background-color: #002b44 !important; /* Dark background color */
+    padding: 10px; /* Ensure padding for delete and download buttons */
+    border: none !important; /* Ensure no borders */
+}
+
+.btn-purple i:hover, .btn-primary i:hover {
+    color: #cccccc; /* Slightly lighter color on hover */
 }
