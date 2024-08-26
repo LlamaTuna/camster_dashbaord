@@ -2,7 +2,7 @@ from django.urls import path
 from .views import index, register, CustomLoginView
 from django.contrib.auth import views as auth_views
 from . import views
-from .views import index, delete_video, delete_all_videos, download_all_videos
+from .views import index, delete_video, delete_all_videos, download_all_videos, delete_selected_events
 
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('delete_video/<int:video_id>/', delete_video, name='delete_video'),
     path('delete_all_videos/', delete_all_videos, name='delete_all_videos'),
     path('download-all-videos/', download_all_videos, name='download_all_videos'),
+    path('delete_selected_events/', delete_selected_events, name='delete_selected_events'),
 ]

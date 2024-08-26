@@ -13,7 +13,7 @@ import os
 from django.conf import settings
 import logging 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 import zipfile
 
@@ -178,3 +178,11 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'dashboard/register.html', {'form': form})
 
+@login_required
+def delete_selected_events(request):
+    if request.method == 'POST':
+        selected_events = request.POST.getlist('selected_events')
+        if selected_events:
+            Event.objects.filter(id__in=selected_events).delete()
+        return redirect('index')  # Redirect back to the index page after deletion
+    return HttpResponseRedirect(reverse('index'))
