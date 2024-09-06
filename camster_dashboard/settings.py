@@ -27,6 +27,8 @@ SECRET_KEY = 'django-insecure-71(*+-&wbgq&40nsu@qrsb9uq%0b^w=2+@$oqapq2k@a%l5uq9
 DEBUG = True
 
 ALLOWED_HOSTS = ['143.198.110.16', 'localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app']
+
+
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://143.198.110.16', "https://shark-app-j9rbt.ondigitalocean.app"]
 
 
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 LOGIN_URL = 'login'
