@@ -36,7 +36,6 @@ db.sqlite3-journal
 .env.*
 myvenv/
 logs
-staticfiles
 media
 
 # macOS
@@ -83,7 +82,6 @@ __pycache__/
 
 # Django specific
 *.log
-staticfiles/
 media/
 db.sqlite3
 models/yolo/*

@@ -1,0 +1,207 @@
+/* Style sheet styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212 !important; /* Dark background color */
+    color: #b4b4b4 !important; /* Light text color */
+    margin: 0;
+    padding: 0;
+}
+
+.index-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212 !important; /* Dark background color */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #000000 !important;
+    background-color: #007bff !important; /* Bright blue button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3 !important;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #333 !important; /* Darker border */
+    border-radius: 5px;
+    background-color: #1e1e1e !important; /* Darker background */
+    color: #e0e0e0 !important; /* Light text color */
+    resize: none;
+}
+
+
+/* Navbar styles */
+.navbar {
+    background-color: #1e1e1e !important; /* Dark background color for the navbar */
+    border-bottom: 1px solid #333 !important; /* Optional: border at the bottom */
+}
+
+.navbar a, .navbar-brand {
+    color: #e0e0e0 !important; /* Light text color for links */
+}
+
+.navbar a:hover, .navbar-brand:hover {
+    color: #ffffff !important; /* Brighter text color on hover */
+}
+
+.navbar a.active {
+    color: #007bff !important; /* Active link color */
+}
+
+/* Optional: Navbar container */
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+    background-color: #1e1e1e !important; /* Dark background color */
+    border: 1px solid #333 !important; /* Darker border */
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important; /* Light text color */
+}
+
+.dropdown-item:hover {
+    background-color: #333 !important; /* Darker hover background */
+    color: #ffffff !important; /* Brighter text color on hover */
+}
+
+/* Custom dark theme for DataTables using your own classes */
+.my-dark-table {
+    background-color: #333;
+    color: #ddd;
+    border-color: #555;
+}
+
+.my-dark-table th,
+.my-dark-table td {
+    background-color: #444;
+    color: #fff;
+}
+
+.my-dark-table thead th {
+    background-color: #555;
+    color: #fff;
+}
+
+.my-dark-table tbody td {
+    background-color: #333;
+    color: #ddd;
+}
+
+.my-dark-table .dataTables_filter input,
+.my-dark-table .dataTables_length select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.my-dark-table .dataTables_paginate .paginate_button {
+    background-color: #444;
+    color: #fff !important;
+    border: 1px solid #555;
+}
+
+.my-dark-table .dataTables_paginate .paginate_button:hover {
+    background-color: #555;
+    color: #fff !important;
+}
+
+.my-dark-table .dataTables_info {
+    color: #ddd;
+}
+
+
+.dashboard-section {
+    background-color: #1e1e1e; /* Lighter background for sections */
+    padding: 20px;
+    margin-bottom: 20px; /* Adjust the gap between sections */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.table-container, .video-container {
+    padding: 15px;
+    background-color: #2a2a2a; /* Slightly lighter background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.thumbnail {
+    position: relative;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #2a2a2a; /* Ensure background matches the section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.thumbnail img {
+    border-radius: 5px;
+}
+
+.thumbnail:hover {
+    box-shadow: 0 0 15px rgba(150, 150, 150, 0.7);
+}
+
+.caption {
+    text-align: center;
+    margin-top: 5px; /* Add space above the caption */
+    padding-top: 15px; /* Add space between the thumbnail and the buttons */
+}
+
+/* Remove red outline from btn-danger and customize it */
+.btn-danger {
+    background-color: #7e1b25 !important; /* Red background */
+    border: none !important; /* Remove border */
+    color: #ffffff !important; /* White text color */
+}
+
+.btn-danger:hover {
+    background-color: #c82333 !important; /* Darker red on hover */
+}
+
+/* General button styles */
+.button-group .btn {
+    padding: 10px; /* Adjust padding as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important; /* Transparent background */
+    border: none !important; /* No border */
+    cursor: pointer;
+}
+
+.button-group .btn i {
+    font-size: 18px; /* Adjust icon size */
+    color: #ffffff; /* White icon color */
+}
+
+.button-group .btn i:hover {
+    color: #cccccc; /* Slightly lighter color on hover */
+}
+
+/* Ensure consistent appearance for all buttons, including delete and download */
+.btn-purple, .btn-primary {
+    background-color: #002b44 !important; /* Dark background color */
+    padding: 10px; /* Ensure padding for delete and download buttons */
+    border: none !important; /* Ensure no borders */
+}
+
+.btn-purple i:hover, .btn-primary i:hover {
+    color: #cccccc; /* Slightly lighter color on hover */
+}
