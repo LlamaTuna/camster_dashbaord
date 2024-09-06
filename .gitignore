@@ -85,6 +85,6 @@ __pycache__/
 db.sqlite3
 models/yolo/*
 
-/media/clips/*
-/media/thumbnails/*
-!/media/.gitkeep
+media/clips/*
+media/thumbnails/*
+!media/.gitkeep
