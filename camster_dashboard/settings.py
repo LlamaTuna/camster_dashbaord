@@ -147,8 +147,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR /'dashboard/static']
 
 
-SESSION_COOKIE_SECURE = True  # Only send cookies over HTTPS (recommended for production)
-CSRF_COOKIE_SECURE = True     # Only send CSRF cookie over HTTPS (recommended for production)
+SESSION_COOKIE_SECURE = False # Only send cookies over HTTPS (recommended for production)
+CSRF_COOKIE_SECURE = False     # Only send CSRF cookie over HTTPS (recommended for production)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # If you want the session to expire when the browser closes
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use the database to store session data
 
