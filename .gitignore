@@ -74,7 +74,7 @@ local_settings.py
 
 # Virtual environment
 dash_venv/
-camster_dashbaord/lib/
+camster_dashboard/lib/
 __pycache__/
 *.pyc
 *.pyo
