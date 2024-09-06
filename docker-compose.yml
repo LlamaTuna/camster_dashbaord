@@ -19,6 +19,7 @@ services:
     image: nginx
     volumes:
       - ./staticfiles:/app/staticfiles  # Mount the static files directory
+      - ./media:/app/media  # Mount the media files directory
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Mount the nginx configuration file
     ports:
       - "8080:8080"

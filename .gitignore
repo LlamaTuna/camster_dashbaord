@@ -10,7 +10,7 @@ __pycache__/
 __pycache__/
 db.sqlite3
 *.sqlite3
-media
+
 
 
 # Unit test / coverage reports
@@ -36,7 +36,7 @@ db.sqlite3-journal
 .env.*
 myvenv/
 logs
-media
+
 
 # macOS
 .DS_Store
@@ -82,7 +82,9 @@ __pycache__/
 
 # Django specific
 *.log
-media/
 db.sqlite3
 models/yolo/*
 
+/media/clips/*
+/media/thumbnails/*
+!/media/.gitkeep
