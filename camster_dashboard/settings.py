@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-71(*+-&wbgq&40nsu@qrsb9uq%0b^w=2+@$oqapq2k@a%l5uq9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['143.198.110.16', 'localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app']
 
@@ -187,5 +187,3 @@ LOGGING = {
         },
     },
 }
-
-DEBUG = False
