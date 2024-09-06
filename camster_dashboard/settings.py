@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-71(*+-&wbgq&40nsu@qrsb9uq%0b^w=2+@$oqapq2k@a%l5uq9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['143.198.110.16', 'localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app']
 
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://143.198.110.16', "https://shark-app-j9rbt.ondigitalocean.app"]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080',  'https://shark-app-j9rbt.ondigitalocean.app']
 
 
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,8 +67,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://localhost:8080",
     "http://127.0.0.1:8001",
-    "http://143.198.110.16",
-    "https://143.198.110.16",
     "https://shark-app-j9rbt.ondigitalocean.app",
     
 ]
@@ -140,6 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "staticfiles"),
