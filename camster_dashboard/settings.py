@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-71(*+-&wbgq&40nsu@qrsb9uq%0b^w=2+@$oqapq2k@a%l5uq9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['143.198.110.16', 'localhost', '127.0.0.1', 'localhost:8000']
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://143.198.110.16']
+ALLOWED_HOSTS = ['143.198.110.16', 'localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://143.198.110.16', "https://shark-app-j9rbt.ondigitalocean.app"]
 
 
 
@@ -65,7 +65,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8001",
     "http://143.198.110.16",
     "https://143.198.110.16",
-    'shark-app-j9rbt.ondigitalocean.app',
+    "https://shark-app-j9rbt.ondigitalocean.app",
+    
 ]
 
 
