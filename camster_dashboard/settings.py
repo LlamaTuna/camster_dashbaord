@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-71(*+-&wbgq&40nsu@qrsb9uq%0b^w=2+@$oqapq2k@a%l5uq9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:8000','shark-app-j9rbt.ondigitalocean.app','192.168.1.60', '0.0.0.0']
 
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8080',  'https://shark-app-j9rbt.ondigitalocean.app']
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dashboard',
     'rest_framework',
     'corsheaders',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,8 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use the database to st
 
 
 # Media files (uploaded content)
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
