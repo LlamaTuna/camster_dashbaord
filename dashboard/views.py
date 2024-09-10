@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -12,24 +12,39 @@ import cv2
 import os
 from django.conf import settings
 import logging 
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 import zipfile
 
-
 logger = logging.getLogger(__name__)
 
 class EventViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for the Event model.
+    
+    Provides default CRUD (Create, Read, Update, Delete) operations for Event instances
+    via the Django REST framework's ModelViewSet.
+    """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 class VideoClipViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for the VideoClip model.
+    
+    Provides default CRUD operations for VideoClip instances.
+    """
     queryset = VideoClip.objects.all()
     serializer_class = VideoClipSerializer
 
 @login_required
 def index(request):
+    """
+    The home page view that displays all events and video clips.
+    
+    This view is only accessible to logged-in users. It retrieves all Event and VideoClip objects,
+    orders them by timestamp and creation date, and renders them in the 'index.html' template.
+    """
     events = Event.objects.all().order_by('-timestamp')
     video_clips = VideoClip.objects.all().order_by('-created_at')
     
@@ -42,6 +57,12 @@ def index(request):
 
 @login_required
 def delete_video(request, video_id):
+    """
+    Deletes a video clip and its associated thumbnail, if they exist.
+    
+    This view finds a VideoClip by its ID, deletes the corresponding video and thumbnail files from the filesystem,
+    and removes the VideoClip object from the database. Redirects to the index page after deletion.
+    """
     clip = get_object_or_404(VideoClip, id=video_id)
     
     # Delete the thumbnail file if it exists
@@ -57,12 +78,23 @@ def delete_video(request, video_id):
     
     return HttpResponseRedirect(reverse('index'))
 
-
 class CustomLoginView(LoginView):
+    """
+    A custom login view using a custom template.
+    
+    This view extends Django's built-in LoginView, specifying 'dashboard/login.html'
+    as the template for rendering the login form.
+    """
     template_name = 'dashboard/login.html'
 
 @login_required
 def delete_all_videos(request):
+    """
+    Deletes all video clips and their associated thumbnails.
+    
+    This view iterates over all VideoClip objects, deletes their video and thumbnail files from the filesystem,
+    and then deletes the VideoClip objects themselves. Only handles POST requests.
+    """
     if request.method == 'POST':
         # Get all video clips
         clips = VideoClip.objects.all()
@@ -83,9 +115,15 @@ def delete_all_videos(request):
 
     return HttpResponse(status=405)  # Method not allowed for GET requests
 
-
 @api_view(['POST'])
 def log_event(request):
+    """
+    API endpoint to log an event.
+    
+    This view handles POST requests to log events. It accepts a JSON payload containing the event type,
+    description, and optional extra data such as the name of a recognized face. It creates an Event object
+    and returns a response indicating success or failure.
+    """
     serializer = LogSerializer(data=request.data)
     if serializer.is_valid():
         # Extract extra_data if present
@@ -107,9 +145,13 @@ def log_event(request):
         print(f"Invalid log event data: {serializer.errors}")
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
 def generate_thumbnail(video_path, thumbnail_path, size=(220, 140)):
+    """
+    Generates a thumbnail for a video file.
+    
+    This function captures the first frame of the video at 'video_path', resizes it to the given size,
+    and saves the resulting image to 'thumbnail_path'.
+    """
     cap = cv2.VideoCapture(video_path)
     success, frame = cap.read()
     if success:
@@ -120,6 +162,12 @@ def generate_thumbnail(video_path, thumbnail_path, size=(220, 140)):
 
 @api_view(['POST'])
 def upload_video(request):
+    """
+    API endpoint to upload a video and generate a thumbnail.
+    
+    This view handles POST requests to upload a video file. It creates a VideoClip object,
+    generates a thumbnail for the video, and returns a success response along with the video clip ID.
+    """
     logger.info(f"Request data: {request.data}")
     video_file = request.FILES.get('video')
     if video_file:
@@ -152,6 +200,12 @@ def upload_video(request):
     return Response({"error": "No video file provided"}, status=status.HTTP_400_BAD_REQUEST)
 
 def download_all_videos(request):
+    """
+    Downloads all video clips as a ZIP file.
+    
+    This view compresses all video files into a ZIP archive and sends it as a downloadable file
+    to the user. The ZIP file is generated dynamically in memory.
+    """
     # Define the zip file name
     zip_filename = "all_videos.zip"
 
@@ -168,6 +222,13 @@ def download_all_videos(request):
     return response
 
 def register(request):
+    """
+    User registration view.
+    
+    This view handles the user registration process. It renders a registration form,
+    validates the form data, creates a new user, and logs them in. If the request method is GET,
+    it displays the form. If POST, it processes the form data.
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -180,6 +241,12 @@ def register(request):
 
 @login_required
 def delete_selected_events(request):
+    """
+    Deletes selected events based on user input.
+    
+    This view handles POST requests to delete multiple selected events. It retrieves the selected
+    event IDs from the POST data and deletes the corresponding Event objects. Redirects to the index page after deletion.
+    """
     if request.method == 'POST':
         selected_events = request.POST.getlist('selected_events')
         if selected_events:
